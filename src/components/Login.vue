@@ -7,8 +7,8 @@
             <v-row class="mx-10 my-10">
               <v-col cols="12">
                 <h3 class="my-5">Iniciar sesión</h3>
-                <v-text-field v-model="login.email" label="Correo electrónico" single-line solo />
-                <v-text-field v-model="login.password" type="password" label="Contraseña" single-line solo/>
+                <v-text-field v-model="login.email" :rules="[rules.required]" label="Correo electrónico" single-line solo />
+                <v-text-field v-model="login.password" :rules="[rules.required]" type="password" label="Contraseña" single-line solo/>
                 <v-btn medium block color="primary" @click="logIn(login.email.toLowerCase(), login.password)">
                   Log in
                 </v-btn>
@@ -34,7 +34,10 @@ const {baseURL} = require('../urlHelper');
 export default {
   data() {
     return {
-      login: {email: "", password: ""}
+      login: {email: "", password: ""},
+      rules: {
+        required: value => !!value || "Campo obligatorio",
+      },
     };
   },
   methods: {
@@ -45,7 +48,7 @@ export default {
       axios
         .post(url, data)
         .then(response => {
-          localStorage.token = response.data.token;
+          sessionStorage.token = response.data.token;
           window.open('/', "_self");
         })
         .catch(error => {

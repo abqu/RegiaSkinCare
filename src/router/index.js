@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Login from '../components/Login'
 import Home from '../components/Home'
 import Register from '../components/Register'
+import AddItem from '../components/AddItem'
 
 Vue.use(VueRouter);
 
@@ -23,7 +24,12 @@ const router = new VueRouter({
         path: '/register',
         name: 'Register',
         component: Register
-    }
+    },
+    {
+        path: '/addItem',
+        name: 'AddItem',
+        component: AddItem
+    },
 ]
 });
 
