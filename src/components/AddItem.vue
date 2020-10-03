@@ -52,7 +52,7 @@ export default {
         axios
           .post(url, data, {
             headers: {
-              sessiontoken : localStorage.getItem('token'),
+              sessiontoken : sessionStorage.getItem('token'),
             },
           }).then(response => {
             console.log(response);

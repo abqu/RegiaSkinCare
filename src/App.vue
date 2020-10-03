@@ -46,16 +46,16 @@ export default {
   }),
   methods: {
     isNotAuthenticated() {
-      return localStorage.getItem("token") === null;
+      return sessionStorage.getItem("token") === null;
     },
     iAmAdmin() {
-      if (localStorage.getItem("token") === null) {
+      if (sessionStorage.getItem("token") === null) {
         return false;
       }
       const url = baseURL + '/api/user/amIAdmin';
       return axios.get(url, {
         headers: {
-          'sessiontoken' : localStorage.getItem("token"),
+          'sessiontoken' : sessionStorage.getItem("token"),
         },
       }).then(response => response.status === 200)
       .catch(error => {
