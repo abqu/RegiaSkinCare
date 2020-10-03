@@ -11,7 +11,7 @@
                 <v-currency-field v-model="item.price" :rules="[rules.required]" label="Precio del producto" single-line solo/>
                 <v-file-input v-model="item.image" chips accept="image/*" prepend-icon="mdi-camera" :rules="[rules.required]" label="Imagen del producto" single-line solo />
                 <v-textarea v-model="item.description" clearable clear-icon="mdi-close-circle" label="Descripción del producto" />
-                <v-btn medium block color="primary">
+                <v-btn medium block color="primary" @click="uploadItem(item.name, item.description, item.price, item.image)">
                   Agregar nuevo producto
                 </v-btn>
               </v-col>
@@ -24,6 +24,10 @@
 </template>
 
 <script>
+
+import axios from "axios";
+const {baseURL} = require('../urlHelper');
+
 export default {
     data() {
         return {
@@ -37,5 +41,30 @@ export default {
             },
         };
     },
+    methods: {
+      uploadItem(name, description, price, image) {
+        const url = baseURL + '/api/item';
+        const data = new FormData();
+        data.append('image', image);
+        data.append('name', name);
+        data.append('description', description);
+        data.append('price', price);
+        axios
+          .post(url, data, {
+            headers: {
+              sessiontoken : localStorage.getItem('token'),
+            },
+          }).then(response => {
+            console.log(response);
+            window.open('/addItem', "_self");
+          }).catch(error => {
+            this.$swal({
+              title: "Error al agregar artículo",
+              icon: "error",
+              text: error.response.statusText,
+            });
+          });
+      },
+    }
 }
 </script>
