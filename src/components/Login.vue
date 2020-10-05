@@ -13,9 +13,9 @@
                   Log in
                 </v-btn>
                 <h4 align="center" class="mb-2">
-                  <a class="caption" href="/register">
+                  <router-link class="caption" to="/register">
                     ¿No estás registrado?
-                  </a>
+                  </router-link>
                 </h4>
               </v-col>
             </v-row>
@@ -49,7 +49,7 @@ export default {
         .post(url, data)
         .then(response => {
           sessionStorage.token = response.data.token;
-          window.open('/', "_self");
+          this.$router.push('/');
         })
         .catch(error => {
           this.$swal({

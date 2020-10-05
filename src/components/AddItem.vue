@@ -56,7 +56,7 @@ export default {
             },
           }).then(response => {
             console.log(response);
-            window.open('/addItem', "_self");
+            this.$router.push('/addItem');
           }).catch(error => {
             this.$swal({
               title: "Error al agregar artículo",
