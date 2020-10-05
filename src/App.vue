@@ -24,6 +24,11 @@
       >
         <v-icon medium>mdi-login</v-icon>
       </v-btn>
+      <v-btn v-else
+        @click="logOut()"
+        text>
+        <v-icon medium>mdi-logout</v-icon>
+      </v-btn>
     </v-app-bar>
 
     <v-main>
@@ -62,7 +67,17 @@ export default {
         console.log(error);
         return false;
       })
-    }
+    },
+    logOut() {
+      sessionStorage.removeItem('token');
+      this.$swal({
+        title: "Sesión cerrada",
+        text: "Has cerrado sesión",
+        icon: "success",
+      });
+      this.$router.push('/');
+      this.$forceUpdate();
+    },
   }
 };
 </script>
