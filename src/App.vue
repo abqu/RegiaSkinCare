@@ -6,7 +6,7 @@
       dark
     >
       <v-btn 
-        href="/"
+        @click="$router.push('/')"
         text>
         <v-toolbar-title class="mr-2 pacifico">Regia Skin Care</v-toolbar-title>
       </v-btn>
@@ -14,15 +14,20 @@
       <v-spacer></v-spacer>
 
       <v-btn v-if="iAmAdmin()"
-        href="/addItem"
+        @click="$router.push('/addItem')"
         text>
         <v-icon medium>mdi-plus</v-icon>
       </v-btn>
       <v-btn v-if='isNotAuthenticated()'
-        href="/login"
+        @click="$router.push('/login')"
         text
       >
         <v-icon medium>mdi-login</v-icon>
+      </v-btn>
+      <v-btn v-else
+        @click="logOut()"
+        text>
+        <v-icon medium>mdi-logout</v-icon>
       </v-btn>
     </v-app-bar>
 
@@ -62,7 +67,17 @@ export default {
         console.log(error);
         return false;
       })
-    }
+    },
+    logOut() {
+      sessionStorage.removeItem('token');
+      this.$swal({
+        title: "Sesión cerrada",
+        text: "Has cerrado sesión",
+        icon: "success",
+      });
+      this.$router.push('/');
+      this.$forceUpdate();
+    },
   }
 };
 </script>
