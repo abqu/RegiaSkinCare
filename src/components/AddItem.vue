@@ -56,7 +56,12 @@ export default {
             },
           }).then(response => {
             console.log(response);
-            this.$router.push('/addItem');
+            this.$swal({
+              title: "Se agregó nuevo producto",
+              icon: "success",
+              text: "Se logró agregar el nuevo producto de manera exitosa",
+            });
+            this.$router.push('/');
           }).catch(error => {
             this.$swal({
               title: "Error al agregar artículo",
