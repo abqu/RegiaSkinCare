@@ -36,6 +36,11 @@ const router = new VueRouter({
         name: 'Cart',
         component: Cart,
     },
+    {
+        path: '/editItem/:itemId',
+        name: 'EditItem',
+        component: AddItem,
+    },
 ]
 });
 
