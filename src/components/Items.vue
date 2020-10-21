@@ -1,7 +1,7 @@
 <template>
   <div id="items">
-    <ul v-bind:key="item">
-      <li v-for="item in items" :key="item">
+    <v-layout row wrap>
+      <v-flex xs12 sm6 lg3 v-for= "item in items" :key="item">
         <v-hover v-slot="{ hover }">
       <v-card
         class="mx-auto"
@@ -48,8 +48,8 @@
         </v-card-text>
       </v-card>
     </v-hover>
-      </li>
-    </ul>
+  </v-flex>
+</v-layout>
   </div>
 </template>
 

@@ -32,8 +32,8 @@ export default {
     data() {
         return {
             item: {
-                name: "", 
-                description: "", 
+                name: "",
+                description: "",
                 price: 0,
             },
             rules: {

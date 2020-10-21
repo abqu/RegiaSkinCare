@@ -5,6 +5,9 @@
 </template>
 
 <script>
+import items from './Items.vue';
+import axios from "axios";
+const {baseURL} = require('../urlHelper');
 
 export default{
   components:{
@@ -19,6 +22,10 @@ export default{
     ]
 
     }
+  },
+  created() {
+      axios.get(baseURL + '/api/item')
+      .then(response => this.items = response.data)
   }
 }
 </script>
