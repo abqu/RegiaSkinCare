@@ -37,7 +37,7 @@
           >
             <v-icon>mdi-cart</v-icon>
           </v-btn>
-          <router-link :to="{ name: 'items', params: {item: item_id} }">
+          <router-link :to="{path: '/items/:item.id', name: 'item.name', props: true, component: ItemDesc}">
           <h3 class="display-1 font-weight-light orange--text mb-2">
             {{item.name}}
           </h3>
