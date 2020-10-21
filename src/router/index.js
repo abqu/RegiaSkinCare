@@ -6,6 +6,7 @@ import Register from '../components/Register'
 import AddItem from '../components/AddItem'
 import ItemDesc from '../components/ItemDesc'
 import Items from '../components/Items'
+import Cart from '../components/Cart'
 
 Vue.use(VueRouter);
 
@@ -41,6 +42,15 @@ const router = new VueRouter({
         path: '/items/:id',
         name: 'ItemDescription',
         component: ItemDesc
+    },
+        path: '/cart',
+        name: 'Cart',
+        component: Cart,
+    },
+    {
+        path: '/editItem/:itemId',
+        name: 'EditItem',
+        component: AddItem,
     },
 ]
 });
